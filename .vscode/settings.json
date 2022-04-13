@@ -1,0 +1,30 @@
+{
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default"
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 3306,
+      "driver": "MySQL",
+      "database": "airbnb",
+      "password": "16/04/2002Farouk",
+      "username": "root",
+      "name": "test"
+    },
+    {
+      "mysqlOptions": {
+        "authProtocol": "default"
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "employee-connection",
+      "database": "employees",
+      "username": "root",
+      "password": "16/04/2002Farouk"
+    }
+  ]
+}

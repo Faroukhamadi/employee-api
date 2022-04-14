@@ -17,6 +17,25 @@ type Employee struct {
 	Hire_date  time.Time
 }
 
+type Dept_emp struct {
+	Emp_no    int
+	Dept_no   int
+	From_date time.Time
+	To_date   time.Time
+}
+
+// taha hssin
+
+type Department struct {
+	Dept_no   int
+	Dept_name string
+}
+
+type Result struct {
+	Emp_no    int
+	Dept_name string
+}
+
 func main() {
 	dsn := "root:16/04/2002Farouk@tcp(127.0.0.1:3306)/employees?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
@@ -50,6 +69,16 @@ func main() {
 		db.First(&employee, "last_name = ?", lastName)
 		ctx.JSON(200, gin.H{
 			"employee": employee,
+		})
+	})
+
+	// TODO: Implement the count for this later
+	router.GET("/employees/department/:dep/count", func(ctx *gin.Context) {
+		dep := ctx.Param("dep")
+		var result []Result
+		rows := db.Model(&Department{}).Select("departments.dept_name, dept_emp.emp_no").Joins("left join dept_emp on dept_emp.dept_no = departments.dept_no").Where("dept_name = ?", dep).Scan(&result)
+		ctx.JSON(200, gin.H{
+			"count_emp_" + dep: rows.RowsAffected,
 		})
 	})
 

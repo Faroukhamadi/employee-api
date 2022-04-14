@@ -1,2 +1,1 @@
-SELECT COUNT(emp_no)
-FROM employees;
+SELECT * FROM employees WHERE emp_no = 10024;
